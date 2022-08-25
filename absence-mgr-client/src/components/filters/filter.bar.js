@@ -54,19 +54,24 @@ export default function FilterBar(props) {
         }
 
         setFilteredData({
-            isFiltered: Object.keys(filters).length > 0 ? true: false,
+            isFiltered: Object.keys(filters).length > 0 ? true : false,
             data: absenceData.filter((absence) => filterAbsences(filters, absence))
         });
     }
 
     return (
-        <form>
-            <label htmlFor="date">Date :</label>
-            <DatePicker onChange={(date) => setSelectedDate(date)} value={selectedDate} format={"y-MM-dd"} />
-            <label htmlFor="type">Type :</label>
-            <AbsenceTypeDropDown setSelected={setAbsenceType}/>
-            <input type="button" name="submit" value="Submit" onClick={filterValues} />
-        </form>
-
+        <div class="d-flex justify-content-center p-4">
+            <form>
+                <label htmlFor="date" className="px-3">Date</label>
+                <DatePicker onChange={(date) => setSelectedDate(date)} value={selectedDate} format={"y-MM-dd"} />
+                <label htmlFor="type" className="px-3">Type</label>
+                <AbsenceTypeDropDown setSelected={setAbsenceType}/>
+                <input className="btn btn-primary px-3" type="button" name="submit" value="Filter" onClick={filterValues} />
+            </form>
+        </div>
     );
 }
+
+
+
+

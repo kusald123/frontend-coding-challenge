@@ -1,7 +1,9 @@
+import {Pagination as BootstrapPagination} from 'react-bootstrap';
+
 
 export default function Pagination(props) {
     // NOTE:: used this logic because currently has records < 100, for a large records, this solution need to be cutomized and optimized.
-    const { paginate, count, perPage } = props;
+    const { paginate, count, perPage, current } = props;
     const pages = [];
 
     for (let idx = 1; idx <= Math.ceil(count / perPage); idx++) {
@@ -10,18 +12,21 @@ export default function Pagination(props) {
 
     const PagesList = () => {
         return pages.map(num => {
-            console.log(num);
-            return (<li key={num}>
-                <button onClick={(e) => {paginate(parseInt(e.currentTarget.innerText))}}>{num}</button>
-            </li>)
+            return (
+                <BootstrapPagination.Item onClick={(e) => {paginate(parseInt(e.currentTarget.innerText))}} key={num} active={num === current}>{num}</BootstrapPagination.Item>
+            )
         })
     }
 
     return (
-        <nav>
-            <ul>
-                <PagesList />
-            </ul>
-        </nav>
+        <div class="d-flex justify-content-center p-4">
+            <BootstrapPagination>
+                <PagesList/>
+            </BootstrapPagination>
+        </div>
+        
     )
 }
+
+
+

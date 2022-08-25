@@ -5,6 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllAbsences } from './redux/absences';
 import Pagination from "./components/pagination";
 import { MESSAGES } from "./common/constants";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 export default function AbsenceMgr() {
 
@@ -55,12 +58,18 @@ export default function AbsenceMgr() {
     absences && absences.length == 0 ? setMsg(MESSAGES.EMPTY) : setMsg("");
     setAbsencesData(absences);
   }, [absences]);
-    
+
   return (
-    <Fragment>
-      <FilterBar absenceData={absences} setFilteredData={setFilteredData} />
-      <AbsenceTable absenceData={currentAbsencesData} loading={loading} msg={msg}/>
-      <Pagination count={absencesData.length} perPage={recordsPerPage} paginate={paginate} />
-    </Fragment>
+    <Container fluid>
+      <Row>
+        <Col ><FilterBar absenceData={absences} setFilteredData={setFilteredData} /></Col>
+      </Row>
+      <Row>
+        <Col ><AbsenceTable absenceData={currentAbsencesData} loading={loading} msg={msg} /></Col>
+      </Row>
+      <Row>
+        <Col><Pagination count={absencesData.length} perPage={recordsPerPage} paginate={paginate} current={currentPage} /></Col>
+      </Row>
+    </Container>
   )
 }

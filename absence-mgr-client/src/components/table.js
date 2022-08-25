@@ -1,19 +1,40 @@
 
 import Status from "./status";
+import Table from 'react-bootstrap/Table';
+import Spinner from 'react-bootstrap/Spinner';
 
 export default function AbsenceTable(props) {
     const { absenceData, loading, msg } = props;
+
+    const DisplayPeriod = (props) => {
+        const { start, end } = props;
+        if (start === end) {
+            return (
+                <td>{start}</td>
+            )
+        } else {
+            return (
+                <td>{start} to {end}</td>
+            )
+        }
+    }
     if (loading) {
         return (
-            <h3>Loading...</h3>
+            <div class="d-flex justify-content-center">
+                <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </Spinner>
+            </div>
         )
     } else if (msg) {
         return (
-            <h3>{msg}</h3>
+            <div class="d-flex justify-content-center p-4">
+                <h3>{msg}</h3>
+            </div>
         )
     } else {
         return (
-            <table>
+            <Table striped bordered hover variant="dark" >
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -29,14 +50,14 @@ export default function AbsenceTable(props) {
                             <tr key={idx}>
                                 <td>{item.userName}</td>
                                 <td>{item.type}</td>
-                                <td>{item.startDate} - {item.endDate}</td>
+                                <DisplayPeriod start={item.startDate} end={item.endDate}/>
                                 <Status createdAt={item.createdAt} confirmedAt={item.confirmedAt} rejectedAt={item.rejectedAt} />
                                 <td>{item.admitterNote}</td>
                             </tr>
                         )
                     })}
                 </tbody>
-            </table>
+            </Table>
         )
     }
 }
