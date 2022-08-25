@@ -3,12 +3,12 @@ import { TYPES } from "../../common/constants";
 
 
 export default function AbsenceTypeDropDown(props) {
-
+    const { setSelected } = props;
     const [selectedType, setSelectedType] = useState('');
 
     const onChangeType = (event) => {
         setSelectedType(event.target.value);
-        props.setSelected(event.target.value);
+        setSelected(event.target.value);
     }
     const AbsenceTypes = () => {
         const options = ['', ...Object.values(TYPES)];

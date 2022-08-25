@@ -45,7 +45,6 @@ export default function FilterBar(props) {
     }
 
     const filterValues = () => {
-        console.log(selectedDate, selectedAbsenceType);
         const filters = {};
         if (selectedDate) {
             filters[FILTERS.DATE] = getDateByFormat(selectedDate);
@@ -65,7 +64,7 @@ export default function FilterBar(props) {
             <label htmlFor="date">Date :</label>
             <DatePicker onChange={(date) => setSelectedDate(date)} value={selectedDate} format={"y-MM-dd"} />
             <label htmlFor="type">Type :</label>
-            <AbsenceTypeDropDown setSelected={setAbsenceType} />
+            <AbsenceTypeDropDown setSelected={setAbsenceType}/>
             <input type="button" name="submit" value="Submit" onClick={filterValues} />
         </form>
 

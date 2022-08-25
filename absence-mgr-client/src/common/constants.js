@@ -19,6 +19,11 @@ const FILTERS = {
     DATE: 'date'
 }
 
+const MESSAGES = {
+    EMPTY: 'The list is empty',
+    ERROR: 'There were some issues when loading the page'
+}
+
 module.exports = {
-    STATUS, URL, TYPES, FILTERS
+    STATUS, URL, TYPES, FILTERS, MESSAGES
 }

@@ -3,7 +3,7 @@ import { URL } from '../common/constants';
 import axios from 'axios';
 
 export const getAllAbsences = createAsyncThunk('absences/getAll',
-    () => {
+    (cb) => {
         // Note:: can use a separate component but this is used this way in order to reduce the number of API calls to get the memberName
         const membersMap = {};
         return axios.get(URL.MEMBERS).then((results) => {
@@ -13,8 +13,9 @@ export const getAllAbsences = createAsyncThunk('absences/getAll',
         }).then((results) => {
             const absences = results.data;
             absences.forEach((absence) => absence['userName'] = membersMap[absence.userId]);
+            cb();
             return { absences };
-        }).catch((err) => console.error(err));
+        }).catch((err) => cb(err));
     });
 
 export const absencesSlice = createSlice({
