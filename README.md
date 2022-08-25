@@ -16,21 +16,21 @@ We decided to implement this feature for our clients and we are calling it the A
 
 ## Product Requirements
 
-- [ ] I want to see a list of absences including the names of the employees.
-- [ ] I want to see the first 10 absences, with the ability to paginate.
-- [ ] I want to see a total number of absences.
-- [ ] For each absence I want to see:
-  - [ ] Member name
-  - [ ] Type of absence
-  - [ ] Period
-  - [ ] Member note (when available)
-  - [ ] Status (can be 'Requested', 'Confirmed' or 'Rejected')
-  - [ ] Admitter note (when available)
-- [ ] I want to filter absences by type.
-- [ ] I want to filter absences by date.
-- [ ] I want to see a loading state until the list is available.
-- [ ] I want to see an error state if the list is unavailable.
-- [ ] I want to see an empty state if there are no results.
+- [x] I want to see a list of absences including the names of the employees.
+- [x] I want to see the first 10 absences, with the ability to paginate.
+- [x] I want to see a total number of absences.
+- [x] For each absence I want to see:
+  - [x] Member name
+  - [x] Type of absence
+  - [x] Period
+  - [x] Member note (when available)
+  - [x] Status (can be 'Requested', 'Confirmed' or 'Rejected')
+  - [x] Admitter note (when available)
+- [x] I want to filter absences by type.
+- [x] I want to filter absences by date.
+- [x] I want to see a loading state until the list is available.
+- [x] I want to see an error state if the list is unavailable.
+- [x] I want to see an empty state if there are no results.
 - [ ] (Bonus) I can generate an iCal file and import it into outlook.
 
 ## Your Mission
@@ -92,3 +92,12 @@ To submit the project for evaluation please follow the steps below:
 Happy coding!
 
 <img src="https://user-images.githubusercontent.com/5693916/30273942-84252588-96fb-11e7-9420-5516b92cb1f7.gif" data-canonical-src="https://user-images.githubusercontent.com/5693916/30273942-84252588-96fb-11e7-9420-5516b92cb1f7.gif" width="150" height="150" />
+
+## How to setup
+
+There are two folders, server and client.
+
+- goto the server folder ("absence-mgr-server") and use command `npm run start` to start the server.
+- goto the client folder ("absence-mgr-client") and use command `npm start` to start the client.
+
+
