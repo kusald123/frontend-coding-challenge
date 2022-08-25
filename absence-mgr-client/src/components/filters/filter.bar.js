@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { FILTERS } from "../../configs/constants";
+import { FILTERS } from "../../common/constants";
 import AbsenceTypeDropDown from "./type.filter";
 import DatePicker from 'react-date-picker';
-import { getDateByFormat, getDateRangeMap } from '../../configs/common';
+import { getDateByFormat, getDateRangeMap } from '../../common/common';
 
 export default function FilterBar(props) {
 

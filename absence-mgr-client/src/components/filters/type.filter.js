@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TYPES } from "../../configs/constants";
+import { TYPES } from "../../common/constants";
 
 
 export default function AbsenceTypeDropDown(props) {

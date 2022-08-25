@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { STATUS } from "../configs/constants";
+import { STATUS } from "../common/constants";
 
 export default function Status(props) {
     const {createdAt, confirmedAt, rejectedAt} = props;

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { URL } from '../configs/constants';
+import { URL } from '../common/constants';
 import axios from 'axios';
 
 export const getAllAbsences = createAsyncThunk('absences/getAll',
