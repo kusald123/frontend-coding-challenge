@@ -40,8 +40,9 @@ export default function AbsenceTable(props) {
                         <th>Name</th>
                         <th>Type</th>
                         <th>Period</th>
+                        <th>Member Note</th>
                         <th>Status</th>
-                        <th>Note</th>
+                        <th>Admitter Note</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,6 +52,7 @@ export default function AbsenceTable(props) {
                                 <td>{item.userName}</td>
                                 <td>{item.type}</td>
                                 <DisplayPeriod start={item.startDate} end={item.endDate}/>
+                                <td>{item.memberNote}</td>
                                 <Status createdAt={item.createdAt} confirmedAt={item.confirmedAt} rejectedAt={item.rejectedAt} />
                                 <td>{item.admitterNote}</td>
                             </tr>
