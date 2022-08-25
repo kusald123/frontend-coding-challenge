@@ -2,11 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import AbsenceMgr from './App';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AbsenceMgr />
+    <Provider store={store}>
+      <AbsenceMgr />
+    </Provider>
   </React.StrictMode>
 );
 

@@ -1,38 +1,49 @@
-import { Component, Fragment} from "react";
+import { Fragment, useEffect, useState } from "react";
 import AbsenceTable from "./components/table";
-import FilterBar from "./components/filter.bar";
-import { URL } from "./configs/constants";
-import axios from 'axios';
+import FilterBar from "./components/filters/filter.bar";
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllAbsences } from './redux/absences';
+import Pagination from "./components/pagination";
 
+export default function AbsenceMgr() {
 
-export default class AbsenceMgr extends Component {
+  const dispatch = useDispatch();
 
-  state = {
-    absenceData: []
+  const [currentPage, setCurrentPage] = useState(1);
+  const [recordsPerPage] = useState(10);
+
+  const { absences } = useSelector((state) => state);
+  const [absencesData, setAbsencesData] = useState([]);
+
+  const lastIndex = currentPage * recordsPerPage;
+  const startIndex = lastIndex - recordsPerPage;
+  const currentAbsencesData = [...absencesData].splice(startIndex, recordsPerPage);
+
+  const paginate = (num) => {
+    setCurrentPage(num)
   };
 
-  componentDidMount() {
-    // Note:: can use a separate component but this is used this way in order to reduce the number of API calls to get the memberName
-    const membersMap = {};
-    axios.get(URL.MEMBERS).then((results) => {
-      const members = results.data;
-      members.forEach((member) => membersMap[member.userId] = member.name);
-      return axios.get(URL.ABSENCES);
-    }).then((results) => {
-      const absences = results.data;
-      absences.forEach((absence) => absence['userName'] = membersMap[absence.userId]);
-      this.setState({ absenceData: absences });
-    }).catch((err) => console.error(err));
+  const setFilteredData = (res) => {
+    if (res && res.isFiltered) {
+      setAbsencesData(res.data);
+    } else {
+      setAbsencesData(absences);
+    }
   }
 
-  render() {
-    const { absenceData } = this.state;
-    return (
-      <Fragment>
-        <FilterBar />
-        <AbsenceTable absenceData={absenceData} />
-      </Fragment>
-    )
-  }
+  useEffect(() => {
+    dispatch(getAllAbsences());
+  }, [dispatch]);
 
+  useEffect(() => {
+    setAbsencesData(absences);
+  }, [absences]);
+
+  return (
+    <Fragment>
+      <FilterBar absenceData={absences} setFilteredData={setFilteredData} />
+      <AbsenceTable absenceData={currentAbsencesData} />
+      <Pagination count={absencesData.length} perPage={recordsPerPage} paginate={paginate} />
+    </Fragment>
+  )
 }
